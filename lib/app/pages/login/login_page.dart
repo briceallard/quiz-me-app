@@ -20,6 +20,10 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
+          Image(
+            image: AssetImage('/assets/images/msu_bg.jpg'),
+            fit: BoxFit.cover,
+          ),
           Center(
             child: Text('Login Page'),
           )
