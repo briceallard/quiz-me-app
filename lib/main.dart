@@ -5,9 +5,9 @@ import 'package:quiz_me_app/app/pages/login/login_page.dart';
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent, //top bar color
+      statusBarColor: Colors.black.withOpacity(0.0), //top bar color
       statusBarIconBrightness: Brightness.dark, //top bar icons
-      systemNavigationBarColor: Colors.transparent, //bottom bar color
+      systemNavigationBarColor: Colors.black.withOpacity(0.0), //bottom bar color
       systemNavigationBarIconBrightness: Brightness.dark, //bottom bar icons
     ),
   );

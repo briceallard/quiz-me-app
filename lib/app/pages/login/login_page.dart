@@ -8,24 +8,28 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        title: Text('Quiz Me', style: TextStyle(color: Colors.black)),
-        iconTheme: IconThemeData(color: Colors.black),
-      ),
       backgroundColor: Colors.white,
-      body: Stack(
-        fit: StackFit.expand,
+      body: ListView(
         children: <Widget>[
-          Image(
-            image: AssetImage('/assets/images/msu_bg.jpg'),
-            fit: BoxFit.cover,
+          Container(
+            width: deviceWidth,
+            height: deviceHeight * .40,
+            color: Colors.red,
+            child: Center(
+              child: Text('Logo Here'),
+            ),
           ),
-          Center(
-            child: Text('Login Page'),
+          Container(
+            width: deviceWidth,
+            height: deviceHeight * .55,
+            color: Colors.green,
+            child: Center(
+              child: Text('Login Stuff'),
+            ),
           )
         ],
       ),
