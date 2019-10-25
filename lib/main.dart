@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz_me_app/app/models/user_model.dart';
 import 'package:quiz_me_app/app/pages/login/login_page.dart';
+import 'package:quiz_me_app/app/repositories/auth_repository.dart';
+import 'package:quiz_me_app/app/repositories/bottom_navigation_provider.dart';
+import 'package:quiz_me_app/app/repositories/db_repository.dart';
+import 'package:quiz_me_app/app/utils/router/router.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -14,17 +20,59 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((_) => runApp(new MyApp()));
+  ]).then((_) => runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthRepository>.value(
+          value: AuthRepository.instance()),
+          ChangeNotifierProvider<DatabaseService>.value(
+            value: DatabaseService.instance()),
+            ChangeNotifierProvider(builder: (_) => BottomNavigationProvider())
+      ],
+      child: Consumer(
+        builder: (BuildContext context, AuthRepository auth, _) {
+          return StreamProvider<User>.value(
+            initialData: User.initial(),
+            value: DatabaseService.instance().getUser(auth.firebaseUser),
+            child: QuizMeApp(),
+          );
+        },
+      ),
+    )
+  ));
 }
 
-class MyApp extends StatelessWidget {
+class QuizMeApp extends StatelessWidget {
+  final Router _router;
+
+  QuizMeApp() : _router = Router();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.white,
       debugShowCheckedModeBanner: false,
+      color: Colors.white,
       title: 'Quiz Me',
       home: LoginPage(),
+      onGenerateRoute: _router.getRoute,
+      navigatorObservers: [_router.routeObserver],
     );
   }
+
+  // class Authorize extends StatelessWidget {
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Consumer(
+  //     builder: (context, AuthRepository auth, _) {
+  //       switch (auth.status) {
+  //         case Status.Uninitialized:
+  //           return SplashPage();
+  //         case Status.Unauthenticated:
+  //         case Status.Authenticating:
+  //         case Status.Authenticated:
+  //           return IndexPage();
+  //       }
+  //     },
+  //   );
+  // }
 }
