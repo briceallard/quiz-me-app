@@ -10,6 +10,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="quiz_me_app"
         android:icon="@mipmap/ic_launcher">
+        <!-- <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:quiz_me_app/app/repositories/auth_repository.dart';
 import 'package:quiz_me_app/app/utils/constants/resources.dart';
 import 'package:quiz_me_app/app/utils/constants/theme.dart';
+// import 'package:qrscan/qrscan.dart' as scanner;
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -70,6 +72,31 @@ class _LoginPageState extends State<LoginPage>
           _buildLoginForm(),
           _signInButton(),
           _signUpLink(),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 25.0),
+                Text(
+                  'Scan QR Code',
+                  style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                ),
+                SizedBox(height: 5.0),
+                GestureDetector(
+                  onTap: () async {
+                    // String cameraScanResult = await scanner.scanPhoto();
+                  },
+                  child: Icon(
+                    FontAwesomeIcons.qrcode,
+                    size: 65.0,
+                    color: Colors.green,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
