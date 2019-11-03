@@ -18,26 +18,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-/*
-
-Track work progress, approximate completion time and arrival time
-automatic notification for tracking progress (on the way, complete)
-Quote customers prices based on submitted pictures
-Check schedule for work order progression
-
-** Services offered by business **
-Landscaping
-Sprinklers
-Spraying chemicals
-Mowing
-Bids
-Snow removal
-
-** Expected costs **
-
-www.absolutelawncareonline.com
-5,000+
-recurring monthly maintenance fee's ??? Probable
-
-*/

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz_me_app/app/repositories/auth_repository.dart';
 import 'package:quiz_me_app/app/utils/constants/resources.dart';
 import 'package:quiz_me_app/app/utils/constants/theme.dart';
+import 'package:quiz_me_app/enums/status.dart';
 // import 'package:qrscan/qrscan.dart' as scanner;
 
 class LoginPage extends StatefulWidget {

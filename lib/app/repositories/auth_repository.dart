@@ -3,8 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_me_app/app/models/user_model.dart';
 import 'package:quiz_me_app/app/repositories/db_repository.dart';
-
-enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
+import 'package:quiz_me_app/enums/status.dart';
 
 class AuthRepository with ChangeNotifier {
   FirebaseAuth _auth;
