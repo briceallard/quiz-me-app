@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_me_app/app/repositories/auth_repository.dart';
+import 'package:quiz_me_app/app/utils/constants/pages.dart';
 import 'package:quiz_me_app/app/utils/constants/resources.dart';
 import 'package:quiz_me_app/app/utils/constants/theme.dart';
 import 'package:quiz_me_app/enums/status.dart';
@@ -72,7 +73,7 @@ class _LoginPageState extends State<LoginPage>
           _buildLoginForm(),
           _signInButton(),
           _signUpLink(),
-          _BuildQrCode(),
+          _buildQrCode(),
         ],
       ),
     );
@@ -232,10 +233,11 @@ class _LoginPageState extends State<LoginPage>
                     ),
             ),
             onPressed: () =>
-                Provider.of<AuthRepository>(context).signInWithEmailAndPassword(
-              emailController.text,
-              passwordController.text,
-            ),
+                //     Provider.of<AuthRepository>(context).signInWithEmailAndPassword(
+                //   emailController.text,
+                //   passwordController.text,
+                // ),
+                Navigator.of(context).pushNamed(Pages.home),
           ),
         ),
       ),
@@ -265,7 +267,7 @@ class _LoginPageState extends State<LoginPage>
     );
   }
 
-  Widget _BuildQrCode() {
+  Widget _buildQrCode() {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Column(

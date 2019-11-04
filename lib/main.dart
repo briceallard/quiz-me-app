@@ -1,7 +1,8 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_me_app/app/models/user_model.dart';
+import 'package:quiz_me_app/app/models/user/user_model.dart';
 import 'package:quiz_me_app/app/pages/login/login_page.dart';
 import 'package:quiz_me_app/app/repositories/auth_repository.dart';
 import 'package:quiz_me_app/app/repositories/bottom_navigation_provider.dart';
@@ -9,25 +10,21 @@ import 'package:quiz_me_app/app/repositories/db_repository.dart';
 import 'package:quiz_me_app/app/utils/router/router.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: Colors.black.withOpacity(0.0), //top bar color
-      statusBarIconBrightness: Brightness.dark, //top bar icons
-      systemNavigationBarColor: Colors.black.withOpacity(0.0), //bottom bar color
-      systemNavigationBarIconBrightness: Brightness.dark, //bottom bar icons
-    ),
-  );
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]).then((_) => runApp(
-    MultiProvider(
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.black.withOpacity(0.0), //top bar color
+    statusBarIconBrightness: Brightness.dark, //top bar icons
+    systemNavigationBarColor: Colors.black.withOpacity(0.0), //bottom bar color
+    systemNavigationBarIconBrightness: Brightness.dark, //bottom bar icons
+  ));
+
+  runApp(DevicePreview(
+    builder: (context) => MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthRepository>.value(
-          value: AuthRepository.instance()),
-          ChangeNotifierProvider<DatabaseService>.value(
+            value: AuthRepository.instance()),
+        ChangeNotifierProvider<DatabaseService>.value(
             value: DatabaseService.instance()),
-            ChangeNotifierProvider(builder: (_) => BottomNavigationProvider())
+        ChangeNotifierProvider(builder: (_) => BottomNavigationProvider())
       ],
       child: Consumer(
         builder: (BuildContext context, AuthRepository auth, _) {
@@ -38,7 +35,7 @@ void main() {
           );
         },
       ),
-    )
+    ),
   ));
 }
 
@@ -50,12 +47,14 @@ class QuizMeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: DevicePreview.of(context).locale,
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       color: Colors.white,
       title: 'Quiz Me',
-      home: LoginPage(),
       onGenerateRoute: _router.getRoute,
       navigatorObservers: [_router.routeObserver],
+      home: LoginPage(),
     );
   }
 

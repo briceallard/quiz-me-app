@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_me_app/app/models/bottom_navigation_item_model.dart';
+import 'package:quiz_me_app/app/models/navigation/bottom_navigation_item_model.dart';
 // import 'package:frank_and_joes/app/pages/rewards/rewards_page.dart';
 // import 'package:frank_and_joes/app/pages/home/home_page.dart';
 // import 'package:frank_and_joes/app/pages/menu/menu_page.dart';
